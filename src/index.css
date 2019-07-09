@@ -20,7 +20,7 @@ code {
   min-height: 800px;
 
 }
-header {
+.header {
   display: flex;
   background-color: white;
   opacity: 0.8;
