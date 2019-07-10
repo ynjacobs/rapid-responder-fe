@@ -23,8 +23,8 @@ useEffect(() => {
     newVals = data.map((item) => {
       const name = item.fields.name;
       return (
-        <label> {name}: 
-      <input key={item.pk} id='qual' type="checkbox" name='qual' value={name} />
+        <label key={item.pk}> {name}: 
+      <input key={item.pk} type="checkbox" name='qual' value={name} />
       <br/>
       </label>
       )
@@ -45,7 +45,33 @@ useEffect(() => {
 const handleResSignup = (event) => {
   event.preventDefault();
   console.log('form submitted');
+  const form = event.target;
+  const uname = form.uname.value;
+  const fname = form.fname.value;
+  const lname = form.lname.value;
+  const email = form.email.value;
+  const phone = form.phone.value;
+  const password = form.pwd.value;
+
+  console.log('---',   form.qual);
+  console.log('----4',   form.qual[4]);
+
   
+
+  const qualArr = form.qual.filter(e => e.checked);
+
+
+  console.log('------', qualArr);
+
+  // axios({
+  //   method: 'post',
+  //   url: process.env.REACT_APP_saveres,
+  //   data: {
+  //     firstName: 'Fred',
+  //     lastName: 'Flintstone'
+  //   }
+  // });
+
 }
 
 return (
@@ -81,16 +107,14 @@ return (
 
   <label>
     E-mail:
-    <input type="email" name="phone" />
+    <input type="email" name="email" />
   </label>
   <br/>
 
 
-<label>
 Qualifications
 <br/>
   {quals}
-</label>
 
 
   <input type="submit" value="Submit" />
