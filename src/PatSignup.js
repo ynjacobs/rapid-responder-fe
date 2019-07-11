@@ -50,7 +50,8 @@ const handlePatSignup = (event) => {
   const fname = form.fname.value;
   const lname = form.lname.value;
   const email = form.email.value;
-  const phone = form.phone.value;
+  const age = form.age.value;
+  const phone_number = form.phone_number.value;
   const height = form.height.value;
   const weight = form.weight.value;
   const medications = form.medications.value;
@@ -72,14 +73,15 @@ const handlePatSignup = (event) => {
   console.log('------', condArr);
 
   axios({
-    method: 'post',
-    url: process.env.REACT_APP_savepat,
+    method: 'POST',
+    url: 'http://localhost:8000/patients/',
     data: {
       uname,
       fname,
       lname,
       email,
-      phone,
+      age,
+      phone_number,
       password,
       height,
       weight,
@@ -95,7 +97,7 @@ const handlePatSignup = (event) => {
     console.log('cookies', res.headers);
   })
   .catch(err => {
-    console.log(err);
+    console.log(err.response);
   })
 
 }
@@ -127,7 +129,13 @@ return (
 
   <label>
     Phone Number:
-    <input type="tel" name="phone" />
+    <input type="tel" name="phone_number" />
+  </label>
+  <br/>
+
+  <label>
+    Age:
+    <input type="number" name="age" />
   </label>
   <br/>
 

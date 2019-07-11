@@ -5,6 +5,7 @@ import './App.css';
 import LandPage from './LandPage';
 import ResSignup from './ResSignup';
 import PatSignup from './PatSignup';
+import Login from './Login';
 import logo from './logo.png';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -37,8 +38,8 @@ function Responder() {
     return <ResSignup />
 }
 
-function Login() {
-    return <h2>Login</h2>
+function Log() {
+    return <Login />
 }
 
 
@@ -98,7 +99,7 @@ const App = () => {
                         <Route path="/" exact component={Index} />
                         <Route path="/patient/" component={Patient} />
                         <Route path="/responder/" component={Responder} />
-                        <Route path="/login/" component={Login} />
+                        <Route path="/login/" component={Log} />
                     </Router>
 
 

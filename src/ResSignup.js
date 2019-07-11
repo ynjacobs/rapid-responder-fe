@@ -68,7 +68,7 @@ const handleResSignup = (event) => {
 
   axios({
     method: 'post',
-    url: process.env.REACT_APP_saveres,
+    url: 'http://localhost:8000/responders/',
     data: {
       uname,
       fname,
