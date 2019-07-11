@@ -4,7 +4,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const ResSignup = () => {
+const PatSignup = () => {
 
   let axiosConfig = {
     withCredentials: true,
@@ -12,10 +12,10 @@ const ResSignup = () => {
   
 let data;
 // let quals;
-const url = process.env.REACT_APP_qualifications
+const url = process.env.REACT_APP_conditions
 // console.log(url);
 
-let [quals, setQuals] = useState([]);
+let [conds, setConds] = useState([]);
 
 useEffect(() => {
   axios.get(url)
@@ -28,21 +28,21 @@ useEffect(() => {
       const name = item.fields.name;
       return (
         <label key={item.pk}> {name}: 
-      <input key={item.pk} type="checkbox" name='qual' value={item.pk} />
+      <input key={item.pk} type="checkbox" name='cond' value={item.pk} />
       <br/>
       </label>
       )
     }); 
     
-    setQuals(newVals); 
+    setConds(newVals); 
     // setQuals(['a','b']); 
     
-    console.log('->',quals);
+    console.log('->',conds);
   })
   .catch(err => {console.log(err)});
 }, {});
 
-const handleResSignup = (event) => {
+const handlePatSignup = (event) => {
   event.preventDefault();
   console.log('form submitted');
   const form = event.target;
@@ -51,24 +51,29 @@ const handleResSignup = (event) => {
   const lname = form.lname.value;
   const email = form.email.value;
   const phone = form.phone.value;
+  const height = form.height.value;
+  const weight = form.weight.value;
+  const medications = form.medications.value;
+  const emer_contact_name = form.emer_contact_name.value;
+  const emer_contact_number = form.emer_contact_number.value;
   const password = form.pwd.value;
 
-  console.log('---',   form.qual);
-  console.log('----4',   form.qual[4]);
+  console.log('---',   form.cond);
+  console.log('----4',   form.cond[4]);
 
-  const nodesArray = [].slice.call(form.qual);
+  const nodesArray = [].slice.call(form.cond);
 
-  let qualArr = [];
+  let condArr = [];
   nodesArray.forEach(e => {
-    if(e.checked) qualArr.push(e.value);
+    if(e.checked) condArr.push(e.value);
   });
 
 
-  console.log('------', qualArr);
+  console.log('------', condArr);
 
   axios({
     method: 'post',
-    url: process.env.REACT_APP_saveres,
+    url: process.env.REACT_APP_savepat,
     data: {
       uname,
       fname,
@@ -76,7 +81,12 @@ const handleResSignup = (event) => {
       email,
       phone,
       password,
-      quals : qualArr
+      height,
+      weight,
+      medications,
+      emer_contact_name,
+      emer_contact_number,
+      conds : condArr
     },
     axiosConfig
   })
@@ -91,7 +101,7 @@ const handleResSignup = (event) => {
 }
 
 return (
-    <form method="POST" onSubmit={handleResSignup}>
+    <form method="POST" onSubmit={handlePatSignup}>
   <label>
     Username:
     <input type="text" name="uname" />
@@ -127,10 +137,39 @@ return (
   </label>
   <br/>
 
+  <label>
+    Medications:
+    <input type="text" name="medications" />
+  </label>
+  <br/>
 
-Qualifications
+  <label>
+    Height(in cm):
+    <input type="number" name="height" />
+  </label>
+  <br/>
+
+  <label>
+    Weight(in lbs):
+    <input type="number" name="weight" />
+  </label>
+  <br/>
+
+  <label>
+    Emergency Contact Name:
+    <input type="text" name="emer_contact_name" />
+  </label>
+  <br/>
+
+  <label>
+    Emergency Contact Number:
+    <input type="tel" name="emer_contact_number" />
+  </label>
+  <br/>
+
+Conditions
 <br/>
-  {quals}
+  {conds}
 
 
   <input type="submit" value="Submit" />
@@ -139,4 +178,4 @@ Qualifications
 
 };
 
-export default ResSignup;
+export default PatSignup;

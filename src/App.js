@@ -4,6 +4,7 @@ import axios from 'axios';
 import './App.css';
 import LandPage from './LandPage';
 import ResSignup from './ResSignup';
+import PatSignup from './PatSignup';
 import logo from './logo.png';
 import dotenv from 'dotenv';
 dotenv.config();
@@ -29,7 +30,7 @@ function Index() {
 }
 
 function Patient() {
-  return <h2>patient</h2>;
+  return <PatSignup />
 }
 
 function Responder() {
