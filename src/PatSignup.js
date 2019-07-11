@@ -59,8 +59,8 @@ const handlePatSignup = (event) => {
   const emer_contact_number = form.emer_contact_number.value;
   const password = form.pwd.value;
 
-  console.log('---',   form.cond);
-  console.log('----4',   form.cond[4]);
+  // console.log('---',   form.cond);
+  // console.log('----4',   form.cond[4]);
 
   const nodesArray = [].slice.call(form.cond);
 
@@ -74,7 +74,7 @@ const handlePatSignup = (event) => {
 
   axios({
     method: 'POST',
-    url: 'http://localhost:8000/patients/',
+    url: process.env.REACT_APP_savepat,
     data: {
       uname,
       fname,

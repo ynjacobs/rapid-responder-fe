@@ -10,7 +10,6 @@ import logo from './logo.png';
 import dotenv from 'dotenv';
 dotenv.config();
 
-
 // const Content = ({user}) => {
 //     console.log("User:", user)
 //     // const isAuth = user.Authenticated;
@@ -55,7 +54,7 @@ const Responders = () => {
 
 
 const App = () => {
-    const url = process.env.REACT_APP_django_auth
+    const url = process.env.REACT_APP_django_refresh
     // const url = "http://localhost:8000/home/"
 
     // check the cookie
@@ -65,14 +64,30 @@ const App = () => {
     const [user, setUser] = useState({});
 
     useEffect(() => {
-        axios.get(url)
-            .then(response => {
-                setUser(response.data)
-                console.log("Axios get user info:", response.data)
-            })
-            .catch(error => {
-                console.log(error);
-            })
+        const accessToken = localStorage.getItem('access-token')
+        const refreshToken = localStorage.getItem('refresh-token')
+        if (refreshToken)
+        {
+            axios({
+                method: 'POST',
+                url: process.env.REACT_APP_django_refresh,
+                data: {
+                  refresh: refreshToken,             
+                }})
+                .then(response => {
+                    // setUser(response.data)
+                    console.log("Axios get user info:", response.data)
+                })
+                .catch(error => {
+                    console.log('error', error);
+                })    
+        }
+        else{
+            console.log("in else render Log()");
+
+            Log();
+        }
+        
     }, {});
 
 
