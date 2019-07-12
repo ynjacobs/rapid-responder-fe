@@ -2,12 +2,13 @@ import React from 'react';
 
 
 
-const ResLand = () => {
-
+const ResLand = ({content}) => {
+    console.log('we are hereeeeeeeeeee');
+    
     return (
-        <div className='landpage_main'>
+        <div>
             {/* <img className='' src={background_pic} alt=''/> */}
-                    <h1>Welcome Responder</h1>    
+                    <h1>Welcome Responder</h1>
         
         </div>
     )
