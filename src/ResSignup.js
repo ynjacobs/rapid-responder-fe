@@ -91,7 +91,7 @@ const handleResSignup = (event) => {
 }
 
 return (
-    <form method="POST" onSubmit={handleResSignup}>
+    <form className='res-css' method="POST" onSubmit={handleResSignup}>
   <label>
     Username:
     <input type="text" name="uname" />
@@ -128,12 +128,12 @@ return (
   <br/>
 
 
-Qualifications
+Qualifications:
 <br/>
   {quals}
 
 
-  <input type="submit" value="Submit" />
+  <input className='sub-res' type="submit" value="Submit" />
 </form>
 )
 

@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  /* background-image: url("background_pic.jpg"); */
-  /* background-size: cover; */
+  background-image: url("background_pic.jpg");
+  background-size: cover;
 
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
@@ -61,5 +61,72 @@ vertical-align: top;
   text-decoration: none;
   display: inline-block;
   font-size: 30px;
+}
+
+.login-css {
+  position: relative;
+  margin-top: 40px;
+  background-color:white; /* Green */
+  border: lightgray solid;
+  color: black;
+  padding: 100px 100px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family:  Arial, Helvetica, sans-serif;
+}
+
+.patsign-css {
+  position: relative;
+  margin-top: 30px;
+  background-color:white; /* Green */
+  border: lightgray solid;
+  color: black;
+  padding: 50px 150px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family:  Arial, Helvetica, sans-serif;
+}
+
+.sub-pat {
+ margin-top: 10px;
+  padding: 10px 22px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.sub-log {
+  margin-top: 20px;
+  margin-left: 90px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+}
+
+.res-css {
+  position: relative;
+  margin-top: 30px;
+  background-color:white; /* Green */
+  border: lightgray solid;
+  color: black;
+  padding: 50px 150px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.sub-res {
+  margin-top: 20px;
+  margin-left: 60px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
 }
 

@@ -104,6 +104,7 @@ const handlePatSignup = (event) => {
 
 return (
     <form method="POST" onSubmit={handlePatSignup}>
+      <div className='patsign-css'>
   <label>
     Username:
     <input type="text" name="uname" />
@@ -175,12 +176,13 @@ return (
   </label>
   <br/>
 
-Conditions
+Conditions:
 <br/>
   {conds}
+  
 
-
-  <input type="submit" value="Submit" />
+  <input className='sub-pat' type="submit" value="Submit" />
+  </div>
 </form>
 )
 

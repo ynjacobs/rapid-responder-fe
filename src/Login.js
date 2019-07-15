@@ -45,6 +45,7 @@ const Login = ({ action }) => {
   return (
     <div>
       <form method="POST" onSubmit={handleLogin} action="/blablabla" >
+        <div className='login-css'>
         <label>
           Username:
           <input type="text" name="username" />
@@ -54,8 +55,10 @@ const Login = ({ action }) => {
           Password:
           <input type="password" name="pwd" />
         </label>
+        
         <br/>
-        <input type="submit" value="Submit" />
+        <input className='sub-log' type="submit" value="Submit" />
+        </div>
       </form>
     </div>
   )
