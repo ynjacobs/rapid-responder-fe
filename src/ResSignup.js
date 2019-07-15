@@ -27,10 +27,13 @@ useEffect(() => {
     newVals = data.map((item) => {
       const name = item.fields.name;
       return (
-        <label key={item.pk}> {name}: 
-      <input key={item.pk} type="checkbox" name='qual' value={item.pk} />
+        <div className='quals-div'>
+        <label className='res-label-css' key={item.pk}> {name}: 
+        </label>
+      <input className='qual-css' key={item.pk} type="checkbox" name='qual' value={item.pk} />
       <br/>
-      </label>
+      </div>
+      
       )
     }); 
     
