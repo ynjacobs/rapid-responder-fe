@@ -104,12 +104,12 @@ const App = () => {
                           </Link>
                       </div>
 
-                      <nav className='myotherdiv'>
+                      {/* <nav className='myotherdiv'>
                           <Link to="/patient/">Patients</Link> |  
                           <Link to="/responder/">Responders</Link> |  
                           <Link to="/login/">Login</Link> |
                           <Link to="/profile/">Profile</Link>
-                      </nav>
+                      </nav> */}
                   </header>
 
                   <Route path="/" exact component={Index} />
