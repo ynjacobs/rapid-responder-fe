@@ -8,10 +8,11 @@ import PatSignup from './PatSignup';
 import Login from './Login';
 import logo from './logo.png';
 import dotenv from 'dotenv';
-import Profile from './Profile';
+import ResProfile from './ResProfile';
 
 import ResLand from './ResLand';
 import PatLand from './PatLand';
+import LandPage from './LandPage';
 
 
 dotenv.config();
@@ -38,7 +39,7 @@ function Log() {
 }
 
 function Prof(){
-    return <Profile />
+    return <ResProfile />
 }
 
 
@@ -121,6 +122,7 @@ const App = () => {
                    />
                   <Route path="/profile/" component={Prof} />
               </Router>
+              <LandPage />
           </div>
       </main>
       

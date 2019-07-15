@@ -8,7 +8,7 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-const Profile = ({action, func}) => {
+const ResProfile = ({action, func}) => {
 
   
   console.log("I am Profile action", action);
@@ -48,4 +48,4 @@ return (
 
 };
 
-export default Profile;
+export default ResProfile;
