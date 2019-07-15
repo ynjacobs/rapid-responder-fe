@@ -65,10 +65,9 @@ vertical-align: top;
 
 .login-css {
   position: relative;
-  left: 30px;
-  bottom : 180px;
+  left: 300px;
+  bottom : 150px;
   color: black;
-  padding: 20px 20px;
   text-align: center;
   text-decoration: none;
   position: relative;
@@ -88,6 +87,7 @@ vertical-align: top;
   display: inline-block;
   font-size: 20px;
   font-family:  Arial, Helvetica, sans-serif;
+  opacity: 0.96;
 }
 
 .sub-pat {
@@ -103,8 +103,10 @@ vertical-align: top;
   margin-top: 20px;
   margin-left: 170px;
   text-decoration: none;
-  display: inline-block;
   font-size: 20px;
+  position: relative;
+  left: 404px;
+  bottom : 200px;
 }
 
 .res-css {
@@ -119,6 +121,7 @@ vertical-align: top;
   display: inline-block;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
+  opacity: 0.96;
 }
 
 .sub-res {
@@ -129,3 +132,44 @@ vertical-align: top;
   font-size: 20px;
 }
 
+.input-sign{
+  display: inline-block;
+  align-items: center;
+  margin-left: 100px;
+}
+
+.label-sign{
+  position: absolute;
+}
+
+.label-pat {
+  position: absolute;
+}
+
+.input-pat {
+  display: inline-block;
+  align-items: center;
+  margin-left: 300px;
+}
+
+.conds-label {
+  position: absolute;
+  left: 150px;
+
+}
+
+.res-label {
+  position: absolute;
+}
+
+.input-res{
+  display: inline-block;
+  align-items: center;
+  margin-left: 150px;
+}
+
+.quals-label {
+  position: absolute;
+  left: 150px;
+
+}

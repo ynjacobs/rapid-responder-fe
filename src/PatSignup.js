@@ -105,80 +105,95 @@ const handlePatSignup = (event) => {
 return (
     <form method="POST" onSubmit={handlePatSignup}>
       <div className='patsign-css'>
-  <label>
+  <label className='label-pat'>
     Username:
-    <input type="text" name="uname" />
-  </label>
+    </label>
+    <input className='input-pat' type="text" name="uname" />
+  
 <br/>
-  <label>
+  <label className='label-pat'>
     Password:
-    <input type="password" name="pwd" />
-  </label>
+    </label>
+    <input className='input-pat' type="password" name="pwd" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     First Name:
-    <input type="text" name="fname" />
-  </label>
+    </label>
+    <input className='input-pat' type="text" name="fname" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Last Name:
-    <input type="text" name="lname" />
-  </label>
+    </label>
+    <input className='input-pat' type="text" name="lname" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Phone Number:
-    <input type="tel" name="phone_number" />
-  </label>
+    </label>
+    <input className='input-pat' type="tel" name="phone_number" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Age:
-    <input type="number" name="age" />
-  </label>
+    </label>
+    <input className='input-pat' type="number" name="age" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     E-mail:
-    <input type="email" name="email" />
-  </label>
+    </label>
+    <input className='input-pat' type="email" name="email" />
+ 
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Medications:
-    <input type="text" name="medications" />
-  </label>
+    </label>
+    <input className='input-pat' type="text" name="medications" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Height(in cm):
-    <input type="number" name="height" />
-  </label>
+    </label>
+    <input className='input-pat' type="number" name="height" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Weight(in lbs):
-    <input type="number" name="weight" />
-  </label>
+    </label>
+    <input className='input-pat' type="number" name="weight" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Emergency Contact Name:
-    <input type="text" name="emer_contact_name" />
-  </label>
+    </label>
+    <input className='input-pat' type="text" name="emer_contact_name" />
+  
   <br/>
 
-  <label>
+  <label className='label-pat'>
     Emergency Contact Number:
-    <input type="tel" name="emer_contact_number" />
-  </label>
+    </label>
+    <input className='input-pat' type="tel" name="emer_contact_number" />
+  
   <br/>
-
+  <label className='conds-label'>
 Conditions:
+</label>
 <br/>
+<div>
   {conds}
+  </div>
   
 
   <input className='sub-pat' type="submit" value="Submit" />

@@ -92,43 +92,50 @@ const handleResSignup = (event) => {
 
 return (
     <form className='res-css' method="POST" onSubmit={handleResSignup}>
-  <label>
+  <label className='res-label'>
     Username:
-    <input type="text" name="uname" />
   </label>
+
+    <input className='input-res' type="text" name="uname" />
 <br/>
-  <label>
+  <label className='res-label'>
     Password:
-    <input type="password" name="pwd" />
   </label>
+
+    <input className='input-res' type="password" name="pwd" />
   <br/>
 
-  <label>
+  <label className='res-label'>
     First Name:
-    <input type="text" name="fname" />
   </label>
+
+    <input className='input-res' type="text" name="fname" />
   <br/>
 
-  <label>
+  <label className='res-label'>
     Last Name:
-    <input type="text" name="lname" />
   </label>
+
+    <input className='input-res' type="text" name="lname" />
   <br/>
 
-  <label>
+  <label className='res-label'>
     Phone Number:
-    <input type="tel" name="phone" />
   </label>
+
+    <input className='input-res' type="tel" name="phone" />
   <br/>
 
-  <label>
+  <label className='res-label'>
     E-mail:
-    <input type="email" name="email" />
   </label>
+
+    <input className='input-res' type="email" name="email" />
   <br/>
 
-
+  <label className='quals-label'>
 Qualifications:
+</label>
 <br/>
   {quals}
 

@@ -122,7 +122,7 @@ const App = () => {
                    />
                   <Route path="/profile/" component={Prof} />
               </Router>
-              <LandPage />
+              {/* <LandPage /> */}
           </div>
       </main>
       
