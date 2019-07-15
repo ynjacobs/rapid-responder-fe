@@ -43,38 +43,53 @@ function Prof(){
 }
 
 
-const App = () => {
-  const url = process.env.REACT_APP_django_refresh
+class App extends React.Component {
 
-  const [func, setFunc] = useState();
-  const [action, setAction] = useState();
-  const [user, setUser] = useState();
+  constructor(props) {
+    super(props);
+  
+    this.state = {
+      func: null,
+      action: null,
+      user: null,
+    };
 
-  useEffect(() => {
-      const accessToken = localStorage.getItem('access-token')
-      const refreshToken = localStorage.getItem('refresh-token')
-      if (refreshToken) {
-        axios({
-            method: 'POST',
-            url: process.env.REACT_APP_django_refresh,
-            data: {
-              refresh: refreshToken,             
-          }
-        }).then(response => {
-          // setState
-          console.log("Axios get user info:", response.data)
-        })
-        .catch(error => {
-            console.log('error', error);
-        });
-      } else {
-          console.log("in else render Log()");
-          setAction('login');
-          // setFunc(() => { return handleLogin });
-      }
-  }, {});
+    this.getTokens();
+
+  }
+
+  getTokens() {
+    
+console.log('in getTokens function');
+    const accessToken = localStorage.getItem('access-token');
+    const refreshToken = localStorage.getItem('refresh-token');
+    
+    if (refreshToken) {
+      axios({
+        method: 'POST',
+        url: process.env.REACT_APP_django_refresh,
+        data: {
+          refresh: refreshToken,             
+        }
+      })
+      .then(response => {
+        console.log("Axios get user info:", response.data)
+      })
+      .catch(error => {
+          console.log('error', error);
+      });
+    } 
+    else {
+        console.log("in else render Log()");
+        this.setState.action = 'login';
+        // setFunc(() => { return handleLogin });
+    }
+
+  }
 
 
+
+/*
   function getUser(username) {
     axios({
       method: 'POST',
@@ -92,6 +107,9 @@ const App = () => {
       }
     })
   }
+*/
+
+  render() {
 
   return (
       <main className="App">
@@ -103,7 +121,6 @@ const App = () => {
                               <img src = { logo } alt = '' />
                           </Link>
                       </div>
-
                       {/* <nav className='myotherdiv'>
                           <Link to="/patient/">Patients</Link> |  
                           <Link to="/responder/">Responders</Link> |  
@@ -115,10 +132,12 @@ const App = () => {
                   <Route path="/" exact component={Index} />
                   <Route path="/patient/" component={Patient} />
                   <Route path="/responder/" component={Responder} />
-                  <Route path="/login/"
+                  <Route path="/login/" component={Log} 
+                  /*
                          render={(routeProps) => (
                             <Log {...routeProps} func={func} />
-                        )} 
+                        )}
+                  */ 
                    />
                   <Route path="/profile/" component={Prof} />
               </Router>
@@ -126,8 +145,11 @@ const App = () => {
           </div>
       </main>
       
-  )
+  )}
 }
 
 
 export default App;
+
+
+// ======================================
