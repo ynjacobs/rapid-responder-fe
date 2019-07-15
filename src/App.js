@@ -124,7 +124,7 @@ const App = () => {
               </Router>
               {/* <LandPage /> */}
           </div>
-          <LandPage />
+          {/* <LandPage /> */}
       </main>
       
   )
