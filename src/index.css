@@ -213,14 +213,14 @@ button {
 
 .qual-css{
   position: relative;
-  left: 150px;
+  left: 110px;
   
   
 }
 
 .quals-div{
   position: relative;
-  left: 10px;
+  left: 5px;
 }
 
 .conds-div {
@@ -235,5 +235,5 @@ button {
 
 .conds-css {
   position: relative;
-  left: 100px;
+  left: 40px;
 }
