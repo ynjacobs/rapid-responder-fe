@@ -7,7 +7,12 @@ import ResProfile from './ResProfile';
 const LandPage = ({action, func}) => {
 
    return (
+       <div>
     <h1>Helooo</h1>
+    <header>
+    <Login />
+    </header>
+    </div>
    );
 }
 
