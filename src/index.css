@@ -208,11 +208,13 @@ button {
 .res-label-css{
   position: absolute;
   left: 150px;
+  font-size: 16px;
 }
 
 .qual-css{
   position: relative;
   left: 150px;
+  
   
 }
 
@@ -228,6 +230,7 @@ button {
 .pat-label-css{
   position: absolute;
   left: 100px;
+  font-size: 16px;
 }
 
 .conds-css {
