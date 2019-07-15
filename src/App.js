@@ -22,8 +22,22 @@ let axiosConfig = {
     withCredentials: true,
   }
 
+function whichLandPage(action){
+switch(action){
+  case 'user':
+    return <PatLand />;
+    break;
+  case 'guest':
+    return <LandPage />;
+    break;
+  default:
+    return <h1 />;
+
+}
+}
+
 function Index() {
-return null;
+return <LandPage />;
 }
 
 function Patient() {
@@ -42,14 +56,12 @@ function Prof(){
     return <ResProfile />
 }
 
-
 class App extends React.Component {
 
   constructor(props) {
     super(props);
   
     this.state = {
-      func: null,
       action: null,
       user: null,
     };
@@ -61,7 +73,6 @@ class App extends React.Component {
   getTokens() {
     
 console.log('in getTokens function');
-    const accessToken = localStorage.getItem('access-token');
     const refreshToken = localStorage.getItem('refresh-token');
     
     if (refreshToken) {
@@ -73,7 +84,12 @@ console.log('in getTokens function');
         }
       })
       .then(response => {
-        console.log("Axios get user info:", response.data)
+        console.log("should call getUser", response.data)
+        const accessToken = response.data.access? response.data.access: null;
+        this.setState.action = 'user';
+        // console.log("acesssssssss::::", accessToken);
+        this.getUser(accessToken);
+
       })
       .catch(error => {
           console.log('error', error);
@@ -81,7 +97,7 @@ console.log('in getTokens function');
     } 
     else {
         console.log("in else render Log()");
-        this.setState.action = 'login';
+        this.setState.action = 'guest';
         // setFunc(() => { return handleLogin });
     }
 
@@ -89,15 +105,22 @@ console.log('in getTokens function');
 
 
 
-/*
-  function getUser(username) {
+/* */
+  getUser(accessToken) {
+    // const accessToken = localStorage.getItem('access-token');
+    console.log("accessToken", accessToken)
     axios({
-      method: 'POST',
-      url: "http://localhost:8000/users/get_by/",
-      data: {
-        username,
+      method: 'PUT',
+      url: "http://localhost:8000/users/get_user/",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
       }
-    }).then(res => {
+    })
+    .then(response => {
+      console.log("dddd::::", response.data)
+      // console.log("dddd::::", res.)
+      this.setState.action = 'patient';
+      /*
       setUser(res.data.user)
 
       if(user.profile.flag === 'P'){
@@ -105,12 +128,14 @@ console.log('in getTokens function');
       } else {
         setAction('res_landpage');
       }
+      */
     })
   }
-*/
+/**/
 
   render() {
 
+    const landPage = whichLandPage(this.state.action);
   return (
       <main className="App">
           <div className="landpage_main">
@@ -133,17 +158,13 @@ console.log('in getTokens function');
                   <Route path="/patient/" component={Patient} />
                   <Route path="/responder/" component={Responder} />
                   <Route path="/login/" component={Log} 
-                  /*
-                         render={(routeProps) => (
-                            <Log {...routeProps} func={func} />
-                        )}
-                  */ 
+
                    />
                   <Route path="/profile/" component={Prof} />
               </Router>
               {/* <LandPage /> */}
           </div>
-          {/* <LandPage /> */}
+          {landPage}
       </main>
       
   )}

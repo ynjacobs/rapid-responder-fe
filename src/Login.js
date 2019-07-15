@@ -11,7 +11,7 @@ let axiosConfig = {
   withCredentials: true,
 }
 
-const Login = ({ action }) => {
+const Login = () => {
 
 
   function handleLogin(event) {
@@ -34,8 +34,6 @@ const Login = ({ action }) => {
       localStorage.setItem('access-token', res.data.access)
       localStorage.setItem('refresh-token', res.data.refresh)
 
-      // getUser(username)
-      // set react-router route
     })
     .catch(err => {
       console.log("errrrwwww", err);
@@ -55,9 +53,7 @@ const Login = ({ action }) => {
         <label className='label-sign'>
           Password:
           </label>
-          <input className='input-sign' type="password" name="pwd" />
-        
-        
+          <input className='input-sign' type="password" name="pwd" />        
         <br/>
         </div>
         <input className='sub-log' type="submit" value="Login" />

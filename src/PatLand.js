@@ -1,8 +1,6 @@
 import React from 'react';
 
-
-
-const PatLand = ({content}) => {
+const PatLand = () => {
 
     return (
         <div>
