@@ -4,14 +4,19 @@ import PatLand from './PatLand';
 import Login from './Login';
 import ResProfile from './ResProfile';
 
-const LandPage = ({action, func}) => {
+const LandPage = () => {
 
    return (
        <div>
-    <h1>Helooo</h1>
-    <header>
+           <main className='para'>
+    <h1>Welcome to Rapid Responder</h1>
+    <p>where patients with pre-existing conditions <br/> can recieve supprt
+        from responders during long ambulance arrival times
+    </p>
+    </main>
+    
     <Login />
-    </header>
+    
     </div>
    );
 }
