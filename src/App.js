@@ -143,7 +143,7 @@ console.log('in getTokens function');
               </Router>
               {/* <LandPage /> */}
           </div>
-          {/* <LandPage /> */}
+          <LandPage />
       </main>
       
   )}

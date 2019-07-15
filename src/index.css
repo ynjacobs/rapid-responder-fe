@@ -237,3 +237,7 @@ button {
   position: relative;
   left: 40px;
 }
+
+p {
+  font-size: 20px;
+}

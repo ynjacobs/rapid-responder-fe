@@ -11,7 +11,7 @@ const LandPage = () => {
            <div className='grid-land'>
            <main className='para'>
     <h1>Welcome to Rapid Responder</h1>
-    <p>where patients with pre-existing conditions <br/> can recieve supprt
+    <p>where patients with pre-existing conditions <br/> can recieve support
         from responders during long ambulance arrival times
     </p>
     </main>
