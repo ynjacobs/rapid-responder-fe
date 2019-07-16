@@ -25,7 +25,7 @@ useEffect(() => {
   
     let newVals = []
     newVals = data.map((item) => {
-      const name = item.fields.name;
+      const name = item.name;
       return (
         <div className='quals-div'>
         <label className='res-label-css' key={item.pk}> {name}: 
