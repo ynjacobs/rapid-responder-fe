@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 // import LandPage from './LandPage';
@@ -126,6 +126,8 @@ console.log('in getTokens function');
       const userType = user.profile.flag;
       console.log("I am:", userType, "kind of user");
 
+      sessionStorage.setItem("user", user);
+
       if(userType === 'R'){
         this.setState.action = 'responder';
       }else {
@@ -135,10 +137,20 @@ console.log('in getTokens function');
   }
 /**/
 
-  render() {
+renderRedirect() {
+  switch(this.state.action) {
+    case 'responder':
+      return <Redirect to="/responder" />
+    case 'patient':
+      return <Redirect to="/patient" />
+    case '':
+      return <Redirect to="/" />
+  }
 
-    const landPage = this.whichLandPage(this.state.action);
-    console.log("landPage:", landPage);
+}
+
+  render() {
+    // const landPage = this.whichLandPage(this.state.action);
   return (
       <main className="App">
         <div className="landpage_main">
@@ -148,12 +160,11 @@ console.log('in getTokens function');
             </div>
           </header>
         </div>
-          {landPage}
+        {this.renderRedirect()}
       </main>
       
   )}
 }
-
 
 export default App;
 
