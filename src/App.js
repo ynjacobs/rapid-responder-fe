@@ -152,13 +152,32 @@ renderRedirect() {
   render() {
     // const landPage = this.whichLandPage(this.state.action);
   return (
+
       <main className="App">
+
         <div className="landpage_main">
           <header className="header">
             <div className='mydiv'>
               <img src = { logo } alt = '' />
             </div>
           </header>
+          <Router>
+                  <header className="header">
+                      <div className='mydiv'>
+                          <Link to="/">
+                              <img src = { logo } alt = '' />
+                          </Link>
+                      </div>
+                  </header>
+                 <Route path="/" exact component={Index} />
+                  <Route path="/patient/" component={Patient} />
+                  <Route path="/responder/" component={Responder} />
+                  <Route path="/login/"
+                         render={(routeProps) => (
+                            <Log {...routeProps} func={func} />
+                        )} />
+                  <Route path="/profile/" component={Prof} />
+              </Router>
         </div>
         {this.renderRedirect()}
       </main>
