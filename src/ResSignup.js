@@ -20,8 +20,9 @@ let [quals, setQuals] = useState([]);
 useEffect(() => {
   axios.get(url)
   .then(res => {
-    data = JSON.parse(res.data); 
     console.log('data:->',res.data)
+    data = JSON.parse(res.data); 
+    // console.log('data:->',res.data)
   
     let newVals = []
     newVals = data.map((item) => {

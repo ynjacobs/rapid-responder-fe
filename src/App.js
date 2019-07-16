@@ -20,6 +20,11 @@ let axiosConfig = {
     withCredentials: true,
   }
 
+    
+    // function Prof(){
+    //     return <Profile />
+    // }
+
 class App extends React.Component {
 
   constructor(props) {
@@ -35,6 +40,33 @@ class App extends React.Component {
 
   }
 
+
+  Index() {
+    return <LandPage handler={this.handleLogin} />;
+    }
+    
+  Patient() {
+      return <PatLand />
+    }
+    
+  Responder() {
+        return <ResLand />
+    }
+    
+  Log() {
+        return <Login />
+    }
+
+
+    PatSign() {
+      return <PatSignup />
+    }
+ 
+    ResSign() {
+      return <ResSignup />
+    }
+ 
+/*
   whichLandPage(action){
     console.log("in whichLandPage for:", action);
     switch(action){
@@ -48,7 +80,7 @@ class App extends React.Component {
         return null;
     }
   }
-
+*/
   handleLogin(event) {
 
     console.log("in handleLogin in App", event);
@@ -162,21 +194,13 @@ renderRedirect() {
             </div>
           </header>
           <Router>
-                  <header className="header">
-                      <div className='mydiv'>
-                          <Link to="/">
-                              <img src = { logo } alt = '' />
-                          </Link>
-                      </div>
-                  </header>
-                 <Route path="/" exact component={Index} />
-                  <Route path="/patient/" component={Patient} />
-                  <Route path="/responder/" component={Responder} />
-                  <Route path="/login/"
-                         render={(routeProps) => (
-                            <Log {...routeProps} func={func} />
-                        )} />
-                  <Route path="/profile/" component={Prof} />
+                  <Route path="/" exact render={(props) => <LandPage {...props} handler={this.handleLogin} />} />
+                  <Route path="/patient/" component={this.Patient} />
+                  <Route path="/responder/" component={this.Responder} />
+                  <Route path="/resSignUp/" component={this.ResSign} />
+                  <Route path="/patSignUp/" component={this.PatSign} />
+
+                  {/* <Route path="/profile/" component={Prof} /> */}
               </Router>
         </div>
         {this.renderRedirect()}
