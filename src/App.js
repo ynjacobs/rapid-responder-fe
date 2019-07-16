@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router,Redirect, Route, Link } from "react-router-dom";
+import React from 'react';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 // import LandPage from './LandPage';
@@ -14,47 +14,11 @@ import ResLand from './ResLand';
 import PatLand from './PatLand';
 import LandPage from './LandPage';
 
-
 dotenv.config();
-
 
 let axiosConfig = {
     withCredentials: true,
   }
-
-function whichLandPage(action){
-switch(action){
-  case 'user':
-    return <PatLand />;
-    break;
-  case 'guest':
-    return <LandPage />;
-    break;
-  default:
-    return <h1 />;
-
-}
-}
-
-function Index() {
-return <LandPage />;
-}
-
-function Patient() {
-  return <PatSignup />
-}
-
-function Responder() {
-    return <ResSignup />
-}
-
-function Log() {
-    return <Login />
-}
-
-function Prof(){
-    return <ResProfile />
-}
 
 class App extends React.Component {
 
@@ -62,13 +26,57 @@ class App extends React.Component {
     super(props);
   
     this.state = {
-      action: null,
+      action: 'guest',
       user: null,
     };
 
     this.getTokens();
+    this.handleLogin = this.handleLogin.bind(this);
 
   }
+
+  whichLandPage(action){
+    console.log("in whichLandPage for:", action);
+    switch(action){
+      case 'guest':
+        return <LandPage handler={this.handleLogin} />;
+      case 'patient':
+        return <PatLand />;
+      case 'responder':
+        return <ResLand />;
+      default:
+        return null;
+    }
+  }
+
+  handleLogin(event) {
+
+    console.log("in handleLogin in App", event);
+
+    let form = event.target;
+    const username = form.username.value;
+    const password = form.pwd.value;
+  
+    axios({
+      method: 'POST',
+      url: process.env.REACT_APP_login,
+      data: {
+        username,
+        password,
+      },
+      axiosConfig
+    })
+    .then(res => {
+      localStorage.setItem('access-token', res.data.access);
+      localStorage.setItem('refresh-token', res.data.refresh);
+      console.log("-->", res.data.access);
+      this.getUser(res.data.access);
+    })
+    .catch(err => {
+      console.log("errrrwwww", err);
+    })
+  }
+  
 
   getTokens() {
     
@@ -87,7 +95,6 @@ console.log('in getTokens function');
         console.log("should call getUser", response.data)
         const accessToken = response.data.access? response.data.access: null;
         this.setState.action = 'user';
-        // console.log("acesssssssss::::", accessToken);
         this.getUser(accessToken);
 
       })
@@ -98,72 +105,49 @@ console.log('in getTokens function');
     else {
         console.log("in else render Log()");
         this.setState.action = 'guest';
-        // setFunc(() => { return handleLogin });
     }
 
   }
 
-
-
 /* */
   getUser(accessToken) {
     // const accessToken = localStorage.getItem('access-token');
-    console.log("accessToken", accessToken)
+    console.log("accessToken:", accessToken)
     axios({
-      method: 'PUT',
-      url: "http://localhost:8000/users/get_user/",
+      method: 'GET',
+      url: "http://localhost:8000/user-auth/",
       headers: {
         Authorization: `Bearer ${accessToken}`,
       }
     })
     .then(response => {
-      console.log("dddd::::", response.data)
-      // console.log("dddd::::", res.)
-      this.setState.action = 'patient';
-      /*
-      setUser(res.data.user)
+      const user = response.data.user;
+      console.log("User:", user);
+      const userType = user.profile.flag;
+      console.log("I am:", userType, "kind of user");
 
-      if(user.profile.flag === 'P'){
-        setAction('pat_landpage');
-      } else {
-        setAction('res_landpage');
+      if(userType === 'R'){
+        this.setState.action = 'responder';
+      }else {
+        this.setState.action = 'patient';
       }
-      */
     })
   }
 /**/
 
   render() {
 
-    const landPage = whichLandPage(this.state.action);
+    const landPage = this.whichLandPage(this.state.action);
+    console.log("landPage:", landPage);
   return (
       <main className="App">
-          <div className="landpage_main">
-              <Router>
-                  <header className="header">
-                      <div className='mydiv'>
-                          <Link to="/">
-                              <img src = { logo } alt = '' />
-                          </Link>
-                      </div>
-                      {/* <nav className='myotherdiv'>
-                          <Link to="/patient/">Patients</Link> |  
-                          <Link to="/responder/">Responders</Link> |  
-                          <Link to="/login/">Login</Link> |
-                          <Link to="/profile/">Profile</Link>
-                      </nav> */}
-                  </header>
-
-                  <Route path="/" exact component={Index} />
-                  <Route path="/patient/" component={Patient} />
-                  <Route path="/responder/" component={Responder} />
-                  <Route path="/login/" component={Log} 
-
-                   />
-                  <Route path="/profile/" component={Prof} />
-              </Router>
-              {/* <LandPage /> */}
-          </div>
+        <div className="landpage_main">
+          <header className="header">
+            <div className='mydiv'>
+              <img src = { logo } alt = '' />
+            </div>
+          </header>
+        </div>
           {landPage}
       </main>
       

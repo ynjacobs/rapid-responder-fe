@@ -4,7 +4,7 @@ import PatLand from './PatLand';
 import Login from './Login';
 import ResProfile from './ResProfile';
 
-const LandPage = () => {
+const LandPage = ({handler}) => {
 
    return (
        <div >
@@ -19,7 +19,7 @@ const LandPage = () => {
     <button className='pat-button'>Patient Sign Up</button>
     </div>
     
-    <Login />
+    <Login handleLogin={handler} />
     
     </div>
    );

@@ -11,38 +11,18 @@ let axiosConfig = {
   withCredentials: true,
 }
 
-const Login = () => {
+const Login = ({handleLogin}) => {
 
 
-  function handleLogin(event) {
+  function submitForm(event) {
+    console.log("in submitForm");
     event.preventDefault();
-
-    let form = event.target;
-    const username = form.username.value;
-    const password = form.pwd.value;
-
-    axios({
-      method: 'POST',
-      url: process.env.REACT_APP_login,
-      data: {
-        username,
-        password,
-      },
-      axiosConfig
-    })
-    .then(res => {
-      localStorage.setItem('access-token', res.data.access)
-      localStorage.setItem('refresh-token', res.data.refresh)
-
-    })
-    .catch(err => {
-      console.log("errrrwwww", err);
-    })
+    handleLogin(event);
   };
 
   return (
     <div>
-      <form method="POST" onSubmit={handleLogin} action="/blablabla" >
+      <form method="POST" onSubmit={submitForm} action="/blablabla" >
         <div className='login-css'>
         <label className='label-sign'>
           Username:
