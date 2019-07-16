@@ -7,7 +7,7 @@ import ResProfile from './ResProfile';
 const LandPage = ({handler}) => {
 
    return (
-       <div >
+       <div className='land-pic'>
            <div className='grid-land'>
            <main className='para'>
     <h1>Welcome to Rapid Responder</h1>

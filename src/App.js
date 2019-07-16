@@ -154,11 +154,11 @@ console.log('in getTokens function');
     })
     .then(response => {
       const user = response.data.user;
-      console.log("User:", user);
+      console.log("User id:", user.id);
       const userType = user.profile.flag;
       console.log("I am:", userType, "kind of user");
 
-      sessionStorage.setItem("user", user);
+      sessionStorage.setItem("userid", user.id);
 
       if(userType === 'R'){
         this.setState.action = 'responder';
