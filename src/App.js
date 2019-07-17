@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route, Link } from "react-router-dom";
 import axios from 'axios';
 import './App.css';
 // import LandPage from './LandPage';
@@ -20,6 +20,11 @@ let axiosConfig = {
     withCredentials: true,
   }
 
+    
+    // function Prof(){
+    //     return <Profile />
+    // }
+
 class App extends React.Component {
 
   constructor(props) {
@@ -32,26 +37,68 @@ class App extends React.Component {
 
     this.getTokens();
     this.handleLogin = this.handleLogin.bind(this);
+    this.signUpHandler = this.signUpHandler.bind(this);
+    this.handleAcceptMission = this.handleAcceptMission.bind(this);
 
   }
 
-  whichLandPage(action){
-    console.log("in whichLandPage for:", action);
-    switch(action){
-      case 'guest':
-        return <LandPage handler={this.handleLogin} />;
-      case 'patient':
-        return <PatLand />;
-      case 'responder':
-        return <ResLand />;
-      default:
-        return null;
+  
+  Patient() {
+      return <PatLand />
     }
-  }
+    
+  Responder() {
+        return <ResLand handler={this.handleAcceptMission} />
+    }
+    
+    PatSign() {
+      return <PatSignup />
+    }
+ 
+    ResSign() {
+      return <ResSignup />
+    }
+ 
+handleAcceptMission(event, caseID) {
+  console.log("handleAcceptMission in App", caseID);
 
-  handleLogin(event) {
+  const userID = sessionStorage.getItem("userid");
 
-    console.log("in handleLogin in App", event);
+  axios({
+    method: 'PUT',
+    url: `http://localhost:8000/cases/${caseID}/`,
+    data: {
+      "res_id": userID,
+    }
+  })
+  .then(res => {
+      console.log("from handleAcceptMission res.data: ", res.data);
+      this.setState({action: 'responder'});
+
+  })
+  .catch(err => {
+    console.log("from handleAcceptMission error", err);
+  })
+
+
+}
+
+signUpHandler(to){
+console.log("Sign Up with:", to);
+
+if(to === 'R'){
+  console.log("Sign up R");  
+  this.setState({action: 'resSU'});
+}else {
+  console.log("Sign up P");  
+  this.setState({action: 'patSU'});
+}
+
+}
+  
+handleLogin(event) {
+
+    console.log("handleLogin in App", event);
 
     let form = event.target;
     const username = form.username.value;
@@ -69,7 +116,6 @@ class App extends React.Component {
     .then(res => {
       localStorage.setItem('access-token', res.data.access);
       localStorage.setItem('refresh-token', res.data.refresh);
-      console.log("-->", res.data.access);
       this.getUser(res.data.access);
     })
     .catch(err => {
@@ -94,7 +140,6 @@ console.log('in getTokens function');
       .then(response => {
         console.log("should call getUser", response.data)
         const accessToken = response.data.access? response.data.access: null;
-        this.setState.action = 'user';
         this.getUser(accessToken);
 
       })
@@ -122,38 +167,69 @@ console.log('in getTokens function');
     })
     .then(response => {
       const user = response.data.user;
-      console.log("User:", user);
+      console.log("User id:", user.id);
       const userType = user.profile.flag;
       console.log("I am:", userType, "kind of user");
 
+      sessionStorage.setItem("userid", user.id);
+
       if(userType === 'R'){
-        this.setState.action = 'responder';
+        console.log("RRRRRR");  
+        this.setState({action: 'responder'});
       }else {
-        this.setState.action = 'patient';
+        console.log("PPPPPP"); 
+        this.setState({action: 'patient'});
       }
+
+      console.log("from getUser() setting state action to:", this.state.action);
+
     })
   }
 /**/
 
-  render() {
+renderRedirect() {
+console.log("in renderRedirect with", this.state.action);
 
-    const landPage = this.whichLandPage(this.state.action);
-    console.log("landPage:", landPage);
+  switch(this.state.action) {
+    case 'responder':
+      return <Redirect to="/responder/" />
+    case 'patient':
+      return <Redirect to="/patient/" />
+    case 'resSU':
+      return <Redirect to="/resSignUp/" />
+    case 'patSU':
+      return <Redirect to="/patSignUp/" />
+    case '':
+      return <Redirect to="/" />
+  }
+
+}
+
+  render() {
+    // const landPage = this.whichLandPage(this.state.action);
   return (
+
       <main className="App">
+
         <div className="landpage_main">
           <header className="header">
             <div className='mydiv'>
               <img src = { logo } alt = '' />
             </div>
           </header>
+          <Router>
+                  <Route path="/" exact render={(props) => <LandPage {...props} signUpHandler={this.signUpHandler} handler={this.handleLogin} />} />
+                  <Route path="/patient/"  component={this.Patient} />
+                  <Route path="/responder/" render={(props) => <ResLand {...props} handler={this.handleAcceptMission} /> }  />
+                  <Route path="/resSignUp/" component={this.ResSign} />
+                  <Route path="/patSignUp/" component={this.PatSign} />
+                  {this.renderRedirect()}
+              </Router>
         </div>
-          {landPage}
       </main>
       
   )}
 }
-
 
 export default App;
 

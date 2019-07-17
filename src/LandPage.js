@@ -4,19 +4,21 @@ import PatLand from './PatLand';
 import Login from './Login';
 import ResProfile from './ResProfile';
 
-const LandPage = ({handler}) => {
+const LandPage = ({handler, signUpHandler}) => {
+
+console.log("in Land Page");
 
    return (
-       <div >
+       <div className='land-pic'>
            <div className='grid-land'>
            <main className='para'>
-    <h1>Welcome to Rapid Responder</h1>
+    <h1 className='welcome'>Welcome to Rapid Responder</h1>
     <p>where patients with pre-existing conditions <br/> can recieve support
         from responders during long ambulance arrival times
     </p>
     </main>
-    <button className='res-button'>Responder Sign Up</button>
-    <button className='pat-button'>Patient Sign Up</button>
+    <button className='res-button' onClick={event => signUpHandler('R')} >Responder Sign Up</button>
+    <button className='pat-button' onClick={event => signUpHandler('P')} >Patient Sign Up</button>
     </div>
     
     <Login handleLogin={handler} />

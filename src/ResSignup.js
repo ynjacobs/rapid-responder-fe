@@ -20,17 +20,21 @@ let [quals, setQuals] = useState([]);
 useEffect(() => {
   axios.get(url)
   .then(res => {
-    data = JSON.parse(res.data); 
     console.log('data:->',res.data)
+    // data = JSON.parse(res.data);
+    data = res.data;
+    // console.log('data:->',res.data)
   
     let newVals = []
     newVals = data.map((item) => {
+      // const name = item.fields.name;
+      console.log("item:", item);
       const name = item.name;
       return (
         <div className='quals-div'>
-        <label className='res-label-css' key={item.pk}> {name}: 
+        <label className='res-label-css' key={`_${item.id}`}> {name}: 
         </label>
-      <input className='qual-css' key={item.pk} type="checkbox" name='qual' value={item.pk} />
+      <input className='qual-css' key={`${item.id}-${name}`} type="checkbox" name='qual' value={item.id} />
       <br/>
       </div>
       

@@ -20,17 +20,17 @@ let [conds, setConds] = useState([]);
 useEffect(() => {
   axios.get(url)
   .then(res => {
-    data = JSON.parse(res.data); 
+    data = res.data; 
     console.log('data:->',res.data)
   
     let newVals = []
     newVals = data.map((item) => {
-      const name = item.fields.name;
+      const name = item.name;
       return (
         <div className='conds-div'>
-        <label className='pat-label-css' key={item.pk}> {name}: 
+        <label className='pat-label-css' key={`_${item.id}_`}> {name}: 
         </label>
-      <input className='conds-css' key={item.pk} type="checkbox" name='cond' value={item.pk} />
+      <input className='conds-css' key={item.id} type="checkbox" name='cond' value={item.id} />
       <br/>
       
       </div>
@@ -62,10 +62,10 @@ const handlePatSignup = (event) => {
   const emer_contact_number = form.emer_contact_number.value;
   const password = form.pwd.value;
 
-  // console.log('---',   form.cond);
-  // console.log('----4',   form.cond[4]);
+  console.log('form.cond:', form.cond);
 
   const nodesArray = [].slice.call(form.cond);
+  console.log('nodesArray:',   nodesArray);
 
   let condArr = [];
   nodesArray.forEach(e => {
