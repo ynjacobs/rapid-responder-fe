@@ -18,18 +18,17 @@ const PatLand = () => {
             console.log("get_unassign_cases_pat==> data", data.case);
 
             if(caze) {
-                // message for searching for help
                 // setInterval to check for assignment
                 console.log("I have a case");
 
                 setContent(() => {
                     return (
                         <div>
-                            <h1>You have called for help, it's on the way or else!</h1>
+                            <h1>You have called for help, enjoy the little time you have!</h1>
                             <h2>{caze.description}</h2>
                             <h2>{caze.patient.name} with {caze.condition["name"]}</h2>
                         </div>
-                        )
+                    )
                 });
 
             } else {

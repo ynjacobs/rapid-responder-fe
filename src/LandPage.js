@@ -4,7 +4,9 @@ import PatLand from './PatLand';
 import Login from './Login';
 import ResProfile from './ResProfile';
 
-const LandPage = ({handler}) => {
+const LandPage = ({handler, signUpHandler}) => {
+
+console.log("in Land Page");
 
    return (
        <div className='land-pic'>
@@ -15,8 +17,8 @@ const LandPage = ({handler}) => {
         from responders during long ambulance arrival times
     </p>
     </main>
-    <button className='res-button'>Responder Sign Up</button>
-    <button className='pat-button'>Patient Sign Up</button>
+    <button className='res-button' onClick={event => signUpHandler('R')} >Responder Sign Up</button>
+    <button className='pat-button' onClick={event => signUpHandler('P')} >Patient Sign Up</button>
     </div>
     
     <Login handleLogin={handler} />
