@@ -11,7 +11,9 @@ class PatLand extends React.Component {
         this.state = {
             content: null,
         };
- 
+        
+        this.checkForChanges = this.checkForChanges.bind(this);
+
         let patID = sessionStorage.getItem("userid");
         console.log("patID:", patID);
 
@@ -23,49 +25,70 @@ class PatLand extends React.Component {
             this.patient = res.data;
             // const resId = this.patient.id;
 
-            axios({
-                method: "GET",
-                url: `http://localhost:8000/cases/${patID}/get_unassign_cases_pat/`
-            }).then(res => {
-                const data = res.data;
-                const caze = data.case;
-                console.log("get_unassign_cases_pat==> data", data.case);
-                
-                if(caze) {
-                    // setInterval to check for assignment
-                    console.log("I have a case");
-                    let newVal;
-                    if(caze.status === 'UN'){
-                        newVal = (
-                            <div>
-                                <h1>You have called for help, enjoy the little time you have!</h1>
-                                <h2>{caze.description}</h2>
-                                <h2>{caze.patient.name} with {caze.condition["name"]}</h2>
-                            </div>
-                        );
-                    } else {
-                        newVal = (
-                            <div>
-                                <h1>You have called for help, and someone seems to care!</h1>
-                                <h2>{caze.responder.name} is coming for your help with {caze.condition["name"]} </h2>
-                            </div>
-                        );
-                    }
-                    this.setState({content: newVal})
-    
-                } else {
-                    console.log("I DON'T have cases :D ")
-                    let newVal = (
-                        <div>
-                            <button className='button' onClick={this.handleHelp}>Emergency</button>
-                        </div>
-                        );
-                    this.setState({content: newVal})
 
-                }}).catch(err => {console.log("error:", err)})
+
+            // call another function!?
+            this.checkForChanges();
+
             }).catch(err => {console.log("error:", err)})
     }
 
+    componentDidMount() {
+
+setInterval(this.checkForChanges, 1000);
+
+}
+  
+//     componentWillUnmount() {
+//   super();
+//     }
+
+    checkForChanges() {
+// setInterval
+        let patID = sessionStorage.getItem("userid");
+        
+        axios({
+            method: "GET",
+            url: `http://localhost:8000/cases/${patID}/get_unassign_cases_pat/`
+        })
+        .then(res => {
+            const data = res.data;
+            const caze = data.case;
+            console.log("get_unassign_cases_pat==> data", data.case);
+            
+            if(caze) {
+                // setInterval to check for assignment
+                console.log("I have a case");
+                let newVal;
+                if(caze.status === 'UN'){
+                    newVal = (
+                        <div>
+                            <h1>You have called for help, enjoy the little time you have!</h1>
+                            <h2>{caze.description}</h2>
+                            <h2>{caze.patient.name} with {caze.condition["name"]}</h2>
+                        </div>
+                    );
+                } else {
+                    newVal = (
+                        <div>
+                            <h1>You have called for help, and someone seems to care!</h1>
+                            <h2>{caze.responder.name} is coming for your help with {caze.condition["name"]} </h2>
+                        </div>
+                    );
+                }
+                this.setState({content: newVal});
+
+            } else {
+                console.log("I DON'T have cases :D ")
+                let newVal = (
+                    <div>
+                        <button className='button' onClick={this.handleHelp}>Emergency</button>
+                    </div>
+                    );
+                this.setState({content: newVal})
+
+            }}).catch(err => {console.log("error:", err)})
+    }
 
     handleHelp = (event) => {
         event.preventDefault();
