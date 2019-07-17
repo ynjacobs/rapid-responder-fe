@@ -38,8 +38,7 @@ class App extends React.Component {
     this.getTokens();
     this.handleLogin = this.handleLogin.bind(this);
     this.signUpHandler = this.signUpHandler.bind(this);
-    this.handleAcceptMission = this.handleAcceptMission.bind(this);
-
+    // this.handleAcceptMission = this.handleAcceptMission.bind(this);
   }
 
   
@@ -59,29 +58,6 @@ class App extends React.Component {
       return <ResSignup />
     }
  
-handleAcceptMission(event, caseID) {
-  console.log("handleAcceptMission in App", caseID);
-
-  const userID = sessionStorage.getItem("userid");
-
-  axios({
-    method: 'PUT',
-    url: `http://localhost:8000/cases/${caseID}/`,
-    data: {
-      "res_id": userID,
-    }
-  })
-  .then(res => {
-      console.log("from handleAcceptMission res.data: ", res.data);
-      this.setState({action: 'responder'});
-
-  })
-  .catch(err => {
-    console.log("from handleAcceptMission error", err);
-  })
-
-
-}
 
 signUpHandler(to){
 console.log("Sign Up with:", to);
@@ -172,6 +148,7 @@ console.log('in getTokens function');
       console.log("I am:", userType, "kind of user");
 
       sessionStorage.setItem("userid", user.id);
+      
 
       if(userType === 'R'){
         console.log("RRRRRR");  
