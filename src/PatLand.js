@@ -66,9 +66,9 @@ setInterval(this.checkForChanges, 1000);
                     
                     newVal = (
                         <div>
-                            <h1>You have called for help, enjoy the little time you have!</h1>
+                            <h1>Waiting for Responder</h1>
                             <h2>{caze.description}</h2>
-                            <h2>{caze.patient.name} with {caze.condition["name"]}</h2>
+                            <h2><div className='pat-name'>{caze.patient.name},</div> condition: {caze.condition["name"]}</h2>
                         </div>
                     );
                 } else {
