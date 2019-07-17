@@ -88,7 +88,7 @@ class PatLand extends React.Component {
                     data: {
                         patient,
                         condition,
-                        description: 'init description'
+                        description: 'new case'
                     }
                     })
                     .then(res => {
