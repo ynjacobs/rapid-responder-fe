@@ -30,10 +30,11 @@ class ResLand extends React.Component {
                     const caze = res.data.case;
                     if(caze){
                         let casesNewVal;
-                        casesNewVal = (<h1> Run now to help {caze.patient.name} at address: {caze.patient.address}, 
+                        casesNewVal = (<h2> Please go help <div className='pat-name'>{caze.patient.name} </div> <br/>
+                        <br/>At: {caze.patient.address}  <br/>
                          <br/>
-                         this person suffers from {caze.condition.name} 
-                         and requested help on {new Date(caze.creation_date).toLocaleTimeString()}</h1>
+                          {caze.condition.name} <br/> <br/>
+                         Requested help at {new Date(caze.creation_date).toLocaleTimeString()}</h2>
                         );
                         this.setState({cases: casesNewVal});
                     } else {
@@ -49,8 +50,8 @@ class ResLand extends React.Component {
                                 newVals = cases.map((caze, index) => {
                                     return (
                                         <div key={index}>
-                                            <h1>Help for {caze.patient.name}</h1> 
-                                            <button key={caze.id} onClick={(event) => this.handleAcceptMission(event, caze.id)}>accept</button>
+                                            <h2>Help <div className='pat-name'>{caze.patient.name}</div> with {caze.condition.name}?</h2> 
+                                            <button className='accept' key={caze.id} onClick={(event) => this.handleAcceptMission(event, caze.id)}>accept</button>
                                         </div>
                                     )
                                 });
@@ -109,7 +110,7 @@ class ResLand extends React.Component {
         return (
             <div>
                 {/* <img className='' src={background_pic} alt=''/> */}
-                        <h1>Welcome {this.responder.name}  </h1>
+                        <h1 className='res-welocme'>Welcome {this.responder.name}  </h1>
                         {this.state.cases }
             </div>
         )

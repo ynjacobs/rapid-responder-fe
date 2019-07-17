@@ -181,6 +181,10 @@ vertical-align: top;
 
 }
 
+.pat-name{
+  font-size: 40px;
+}
+
 .res-label {
   position: absolute;
 }
@@ -262,8 +266,22 @@ button {
   left: 40px;
 }
 
+.accept {
+  position: absolute;
+  left: 600px;
+  top: 55%;
+}
 p {
   font-size: 20px;
+}
+
+.res-welocme {
+  font-size: 60px;
+  color: blue;
+}
+.pat-welcome {
+font-size: 60px;
+color: gray;
 }
 
 @media screen and (max-width: 360px){
@@ -370,7 +388,7 @@ button {
 .button {
   position: absolute;
   left: 60px;
-  top: 40%;
+  top: 50%;
   background-color: red; /* Green */
   border: none;
   color: white;
@@ -379,6 +397,13 @@ button {
   text-decoration: none;
   /* display: inline-block; */
   font-size: 30px;
+}
+
+.accept {
+  position: absolute;
+  left: 120px;
+  top: 65%;
+  font-size: 20px;
 }
 
 .welcome {

@@ -21,7 +21,7 @@ class PatLand extends React.Component {
         })
         .then(res => {
             this.patient = res.data;
-            // const resId = this.patient.id;
+            patID = this.patient.id;
 
             axios({
                 method: "GET",
@@ -46,8 +46,8 @@ class PatLand extends React.Component {
                     } else {
                         newVal = (
                             <div>
-                                <h1>You have called for help, and someone seems to care!</h1>
-                                <h2>{caze.responder.name} is coming for your help with {caze.condition["name"]} </h2>
+                                <h1>You have called for help</h1>
+                                <h2>{caze.responder.name} is coming to help with {caze.condition["name"]} </h2>
                             </div>
                         );
                     }
@@ -96,7 +96,7 @@ class PatLand extends React.Component {
 
                         let newVal = (
                             <div>
-                                <h1>You have called for help, enjoy the little time you have!</h1>
+                                <h1>Help will be here soon!</h1>
                                 <h2>Condition: {caze.condition.name}</h2>
                             </div>
                         );
@@ -116,7 +116,7 @@ class PatLand extends React.Component {
     render(){
         return (
             <>
-            <h1>Welcome {this.patient.name}</h1>
+            <h1 className='pat-welcome'>Welcome {this.patient.name}</h1>
             <div>{this.state.content}</div>
             </>
     
