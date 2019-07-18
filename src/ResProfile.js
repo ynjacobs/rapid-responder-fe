@@ -20,7 +20,7 @@ const ResProfile = ({action, func}) => {
 
   axios({
     method: 'POST',
-    url: "http://localhost:8000/patients/get_p/",
+    url: "https://rapid-responder-api.herokuapp.com/patients/get_p/",
     headers: {
       Authorization: `Bearer ${accessToken}`,          
     }})

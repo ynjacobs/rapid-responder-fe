@@ -19,7 +19,7 @@ class ResLand extends React.Component {
         console.log("userid:", userid);
         axios({
             method:'GET',
-            url: `http://localhost:8000/responders/${userid}/`,
+            url: `https://rapid-responder-api.herokuapp.com/responders/${userid}/`,
             })
             .then(res => {
                 this.responder = res.data;
@@ -39,7 +39,7 @@ checkForUpdates() {
 
     axios({
         method: "GET",
-        url: `http://localhost:8000/cases/${resId}/ongoing/`,
+        url: `https://rapid-responder-api.herokuapp.com/cases/${resId}/ongoing/`,
     })
     .then(res => {
         console.log("res.data", res.data);
@@ -59,7 +59,7 @@ checkForUpdates() {
             // show all cases unassigned
             axios({
                 method: "GET",
-                url: `http://localhost:8000/cases/unassigned/`,
+                url: `https://rapid-responder-api.herokuapp.com/cases/unassigned/`,
             }).then(res => {
                 console.log("unassigned cases=> res.data", res.data);
                 const cases = res.data.cases;
@@ -102,7 +102,7 @@ checkForUpdates() {
       
         axios({
           method: 'PUT',
-          url: `http://localhost:8000/cases/${caseID}/`,
+          url: `https://rapid-responder-api.herokuapp.com/cases/${caseID}/`,
           data: {
             "res_id": userID,
           }

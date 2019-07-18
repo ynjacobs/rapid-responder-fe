@@ -19,7 +19,7 @@ class PatLand extends React.Component {
 
         axios({
             method:'GET',
-            url: `http://localhost:8000/patients/${patID}/`,
+            url: `https://rapid-responder-api.herokuapp.com/patients/${patID}/`,
         })
         .then(res => {
             this.patient = res.data;
@@ -49,7 +49,7 @@ setInterval(this.checkForChanges, 1000);
         
         axios({
             method: "GET",
-            url: `http://localhost:8000/cases/${patID}/get_unassign_cases_pat/`
+            url: `https://rapid-responder-api.herokuapp.com/cases/${patID}/get_unassign_cases_pat/`
         })
         .then(res => {
             const data = res.data;
@@ -102,7 +102,7 @@ setInterval(this.checkForChanges, 1000);
 
         axios({
             method:'GET',
-            url: `http://localhost:8000/patients/${userid}/`,
+            url: `https://rapid-responder-api.herokuapp.com/patients/${userid}/`,
             })
             .then(res => {
                 const patient = res.data;
@@ -110,7 +110,7 @@ setInterval(this.checkForChanges, 1000);
 
                 axios({
                     method:'POST',
-                    url: `http://localhost:8000/cases/`,
+                    url: `https://rapid-responder-api.herokuapp.com/cases/`,
                     data: {
                         patient,
                         condition,

@@ -136,7 +136,7 @@ console.log('in getTokens function');
     console.log("accessToken:", accessToken)
     axios({
       method: 'GET',
-      url: "http://localhost:8000/user-auth/",
+      url: "https://rapid-responder-api.herokuapp.com/user-auth/",
       headers: {
         Authorization: `Bearer ${accessToken}`,
       }
