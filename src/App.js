@@ -82,7 +82,7 @@ handleLogin(event) {
   
     axios({
       method: 'POST',
-      url: process.env.REACT_APP_login,
+      url: "https://rapid-responder-api.herokuapp.com/api/token/",
       data: {
         username,
         password,
@@ -108,7 +108,7 @@ console.log('in getTokens function');
     if (refreshToken) {
       axios({
         method: 'POST',
-        url: process.env.REACT_APP_django_refresh,
+        url: "https://rapid-responder-api.herokuapp.com/api/token/refresh/",
         data: {
           refresh: refreshToken,             
         }
